@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='booksID'>Books...</button>
+    <div id="allBooks"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var book = document.getElementById('booksID')
+        function getBooks(){
+            $.ajax({
+                url: '/books/api/',
+                method: 'GET',
+                success: (res) => {
+                    var data = JSON.parse(res)
+                    var ap = document.getElementById('allBooks')
+                    // ap.innerHTML = '<img src=' + `${data[0].author}` + '/>'
+                    // `<img src=${data[0].img} width="300" height="300"/>`
+                    var counter = 0;
+                    while (counter <= data.length + 1){
+                        ap.innerHTML = `
+                            <h1>${data[counter].title}</h1>
+                            <h2>${data[counter].subtitle}</h2>
+                        `
+                    }
+
+                    console.log(data.length)
+                },
+                error: (err) => {
+                    console.log(err)
+                }
+            })
+        }
+
+        book.addEventListener('click', getBooks)
+    </script>        
+</body>
+</html>
