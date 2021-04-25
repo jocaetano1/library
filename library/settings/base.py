@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from library.utils import get_environs_vars
 
 from pathlib import Path
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x$69u^_ov+zu*5j%2!jj=9s(c8h8$hht_rs!6ti7j-dss1ojj&'
+SECRET_KEY = get_environs_vars('SECRET_KEY') #'django-insecure-x$69u^_ov+zu*5j%2!jj=9s(c8h8$hht_rs!6ti7j-dss1ojj&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
