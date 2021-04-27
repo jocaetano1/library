@@ -10,9 +10,13 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     isbn = models.CharField(max_length=13)
     pub_date = models.DateField(null=True)
+    is_digital = models.BooleanField(default=False)
 
     class Meta:
         pass
     
     def __str__(self):
         return self.title
+
+    def is_ebook(self):
+        return self.is_digital
